@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>View Models - Autodesk Forge</title>
   <meta charset="utf-8" />
@@ -10,20 +11,22 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.7/jstree.min.js"></script>
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.7/themes/default/style.min.css" />
-   <!-- Socket.io -->
-   <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+  <!-- Socket.io -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
   <!-- Autodesk Forge Viewer files -->
-  <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.min.css" type="text/css">
+  <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.min.css"
+    type="text/css">
   <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.min.js"></script>
   <!-- this project files -->
   <link href="css/main.css" rel="stylesheet" />
- 
+
   <!-- Files for this project -->
   <script src="js/ForgeTree.js"></script>
   <script src="js/ForgeViewer.js"></script>
   <script src="js/ExtensionTest.js"></script>
   <script src="/js/ForgeDesignAutomation.js"></script>
 </head>
+
 <body>
   <!-- Fixed navbar by Bootstrap: https://getbootstrap.com/examples/navbar-fixed-top/ -->
   <nav class="navbar navbar-default navbar-fixed-top">
@@ -45,7 +48,8 @@
           <div class="panel-heading" data-toggle="tooltip">
             Buckets &amp; Objects
             <span id="refreshBuckets" class="glyphicon glyphicon-refresh" style="cursor: pointer"></span>
-            <button class="btn btn-xs btn-info" style="float: right" id="showFormCreateBucket" data-toggle="modal" data-target="#createBucketModal">
+            <button class="btn btn-xs btn-info" style="float: right" id="showFormCreateBucket" data-toggle="modal"
+              data-target="#createBucketModal">
               <span class="glyphicon glyphicon-folder-close"></span> New bucket
             </button>
           </div>
@@ -59,7 +63,7 @@
         <div id="forgeViewer"></div>
       </div>
 
-      <div class="col-sm-4 fill">
+      <!-- <div class="col-sm-4 fill">
         <div class="form-group">
           <label for="width">Width:</label>
           <input type="number" class="form-control" id="width" placeholder="Enter new width value">
@@ -79,17 +83,75 @@
           <select class="form-control" id="activity"> </select>
         </div>
         <button class="btn btn-primary" id="startWorkitem">Start workitem</button><br />
-      </div>
-      
-      <div class="col-sm-8 fill">
+      </div> -->
+
+      <!-- <div class="col-sm-8 fill">
         <pre id="outputlog" style="height: calc(100vh - 120px);; overflow-y: scroll;"></pre>
-      </div>
+      </div> -->
     </div>
   </div>
-</div>
+  </div>
+
   <form id="uploadFile" method='post' enctype="multipart/form-data">
     <input id="hiddenUploadField" type="file" name="theFile" style="visibility:hidden" />
   </form>
+
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
+    Запустить модальное окно
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLongTitle">Modal title</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="width">Width:</label>
+                  <input type="number" class="form-control" id="width" placeholder="Enter new width value">
+                </div>
+                <div class="form-group">
+                  <label for="height">Height:</label>
+                  <input type="number" class="form-control" id="height" placeholder="Enter new height value">
+                </div>
+
+                <div class="form-group">
+                  <label for="inputFile">Input file</label>
+                  <input type="file" class="form-control-file" id="inputFile">
+                </div>
+
+                <div class="form-group">
+                  <label for="activity">Existing activities</label>
+                  <select class="form-control" id="activity"> </select>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <pre id="outputlog" style="height: calc(45vh - 120px);; overflow-y: scroll;"></pre>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button class="btn btn-primary" id="startWorkitem">Start workitem</button><br />
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Modal Create Bucket -->
   <div class="modal fade" id="createBucketModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -101,7 +163,7 @@
           <h4 class="modal-title" id="myModalLabel">Create new bucket</h4>
         </div>
         <div class="modal-body">
-          <input type="text" id="newBucketKey" class="form-control"> For demonstration purposes, objects (files) are 
+          <input type="text" id="newBucketKey" class="form-control"> For demonstration purposes, objects (files) are
           NOT automatically translated. After you upload, right click on
           the object and select "Translate". Bucket keys must be of the form [-_.a-z0-9]{3,128}
         </div>
@@ -111,35 +173,38 @@
         </div>
       </div>
     </div>
-     <!-- Modal AppBundle -->
+    <!-- Modal AppBundle -->
     <div class="modal fade" id="defineActivityModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Cancel"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel">Define new AppBundle & Activity</h4>
-              </div>
-              <div class="modal-body">
-                <div class="alert alert-warning">Define AppBundle &amp; Activity only once.<br />Redefine only when your plugin code change (creates a new version).</div>
-                  <div class="form-group">
-                      <label for="localBundles">Select a local AppBundle:</label>
-                      <select class="form-control" id="localBundles"> </select>
-                      <b>Tip:</b> Make sure .ZIP bundles are placed at <b>/bundles/</b> folder
-                  </div>
-                  <div class="form-group">
-                      <label for="engines">Select engine:</label>
-                      <select class="form-control" id="engines"> </select>
-                  </div>
-                  For this sample the .ZIP name is used as suffix to define <b>AppBundle</b> and <b>Activity</b>
-                  names. Activities will have file and params input, and file output.
-              </div>
-              <div class="modal-footer">
-                  <button class="btn btn-danger" id="clearAccount">Clear account</button>
-                  <button type="button" class="btn btn-primary" id="createAppBundleActivity">Define activity</button>
-              </div>
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Cancel"><span
+                aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Define new AppBundle & Activity</h4>
           </div>
+          <div class="modal-body">
+            <div class="alert alert-warning">Define AppBundle &amp; Activity only once.<br />Redefine only when your
+              plugin code change (creates a new version).</div>
+            <div class="form-group">
+              <label for="localBundles">Select a local AppBundle:</label>
+              <select class="form-control" id="localBundles"> </select>
+              <b>Tip:</b> Make sure .ZIP bundles are placed at <b>/bundles/</b> folder
+            </div>
+            <div class="form-group">
+              <label for="engines">Select engine:</label>
+              <select class="form-control" id="engines"> </select>
+            </div>
+            For this sample the .ZIP name is used as suffix to define <b>AppBundle</b> and <b>Activity</b>
+            names. Activities will have file and params input, and file output.
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-danger" id="clearAccount">Clear account</button>
+            <button type="button" class="btn btn-primary" id="createAppBundleActivity">Define activity</button>
+          </div>
+        </div>
       </div>
-  </div>
+    </div>
   </div>
 </body>
+
 </html>
