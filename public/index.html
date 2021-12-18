@@ -25,6 +25,17 @@
   <script src="js/ForgeViewer.js"></script>
   <script src="js/ExtensionTest.js"></script>
   <script src="/js/ForgeDesignAutomation.js"></script>
+  <script src="/js/handleselectionextension.js"></script>
+  <!-- dashboard files -->
+  <script src="js/Dashboard/Dashboard.js"></script>
+  <script src="js/Dashboard/DashboardPanel.js"></script>
+  <!--Chart JS  packages-->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" />
+  <script src="js/Dashboard/PanelBarChart.js"></script>
+<script src="js/Dashboard/PanelPieChart.js"></script>
+
+
 </head>
 
 <body>
@@ -38,12 +49,14 @@
           </a>
         </li>
       </ul>
-			<img src="https://profkommospolytech.ru/uploads/images/partners/large/0b6dd8bb96f9fc0544405b04019e34b7.png" class="rounded float-left" alt="logo" width="55">
+      <img src="https://profkommospolytech.ru/uploads/images/partners/large/0b6dd8bb96f9fc0544405b04019e34b7.png"
+        class="rounded float-left" alt="logo" width="55">
       <div style="float:left; padding-top: 10px;">
-			<h4>СИА</h4>
-		  </div>
-			<div style="float: right; margin-top: 10px;">
-        <button id="btnDA" type="button" class="btn btn-primary btn-config" data-toggle="modal" data-target=".bd-example-modal-ll">
+        <h4>СИА</h4>
+      </div>
+      <div style="float: right; margin-top: 10px;">
+        <button id="btnDA" type="button" class="btn btn-primary btn-config" data-toggle="modal"
+          data-target=".bd-example-modal-ll">
           Параметры Design Automation
         </button>
       </div>
@@ -137,88 +150,93 @@
     </div>
   </div>
 
-		<!-- modal -->
-		<div class="modal fade bd-example-modal-ll" id="defineActivityModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-			<div class="modal-dialog" role="document">
-					<div class="modal-content">
-							<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-label="Cancel"><span aria-hidden="true">&times;</span></button>
-									<h4 class="modal-title" id="myModalLabel">Define new AppBundle & Activity</h4>
-							</div>
-							<div class="modal-body">
-								<div class="alert alert-warning"><center>Define AppBundle &amp; Activity only once.<br />Redefine only when your plugin code change (creates a new version).</center></div>
-									<div class="form-group">
-											<label for="localBundles">Select a local AppBundle:</label>
-											<select class="form-control" id="localBundles"> </select>
-											<b>Tip:</b> Make sure .ZIP bundles are placed at <b>/bundles/</b> folder
-									</div>
-									<div class="form-group">
-											<label for="engines">Select engine:</label>
-											<select class="form-control" id="engines"> </select>
-									</div>
-									For this sample the .ZIP name is used as suffix to define <b>AppBundle</b> and <b>Activity</b>
-									names. Activities will have file and params input, and file output.
-							</div>
-							<div class="modal-footer">
-									<button class="btn btn-danger" id="clearAccount">Clear account</button>
-									<button type="button" class="btn btn-primary" id="createAppBundleActivity">Define activity</button>
-							</div>
-					</div>
-			</div> 
-
-  <!-- Modal Create Bucket -->
-  <div class="modal fade" id="createBucketModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <!-- modal -->
+  <div class="modal fade bd-example-modal-ll" id="defineActivityModal" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title" id="myModalLabel">Create new bucket</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Cancel"><span
+              aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Define new AppBundle & Activity</h4>
         </div>
         <div class="modal-body">
-          <input type="text" id="newBucketKey" class="form-control"> For demonstration purposes, objects (files) are
-          NOT automatically translated. After you upload, right click on
-          the object and select "Translate". Bucket keys must be of the form [-_.a-z0-9]{3,128}
+          <div class="alert alert-warning">
+            <center>Define AppBundle &amp; Activity only once.<br />Redefine only when your plugin code change (creates
+              a new version).</center>
+          </div>
+          <div class="form-group">
+            <label for="localBundles">Select a local AppBundle:</label>
+            <select class="form-control" id="localBundles"> </select>
+            <b>Tip:</b> Make sure .ZIP bundles are placed at <b>/bundles/</b> folder
+          </div>
+          <div class="form-group">
+            <label for="engines">Select engine:</label>
+            <select class="form-control" id="engines"> </select>
+          </div>
+          For this sample the .ZIP name is used as suffix to define <b>AppBundle</b> and <b>Activity</b>
+          names. Activities will have file and params input, and file output.
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary" id="createNewBucket">Go ahead, create the bucket</button>
+          <button class="btn btn-danger" id="clearAccount">Clear account</button>
+          <button type="button" class="btn btn-primary" id="createAppBundleActivity">Define activity</button>
         </div>
       </div>
     </div>
-    <!-- Modal AppBundle -->
-    <div class="modal fade" id="defineActivityModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+    <!-- Modal Create Bucket -->
+    <div class="modal fade" id="createBucketModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Cancel"><span
-                aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Define new AppBundle & Activity</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">Create new bucket</h4>
           </div>
           <div class="modal-body">
-            <div class="alert alert-warning">Define AppBundle &amp; Activity only once.<br />Redefine only when your
-              plugin code change (creates a new version).</div>
-            <div class="form-group">
-              <label for="localBundles">Select a local AppBundle:</label>
-              <select class="form-control" id="localBundles"> </select>
-              <b>Tip:</b> Make sure .ZIP bundles are placed at <b>/bundles/</b> folder
-            </div>
-            <div class="form-group">
-              <label for="engines">Select engine:</label>
-              <select class="form-control" id="engines"> </select>
-            </div>
-            For this sample the .ZIP name is used as suffix to define <b>AppBundle</b> and <b>Activity</b>
-            names. Activities will have file and params input, and file output.
+            <input type="text" id="newBucketKey" class="form-control"> For demonstration purposes, objects (files) are
+            NOT automatically translated. After you upload, right click on
+            the object and select "Translate". Bucket keys must be of the form [-_.a-z0-9]{3,128}
           </div>
           <div class="modal-footer">
-            <button class="btn btn-danger" id="clearAccount">Clear account</button>
-            <button type="button" class="btn btn-primary" id="createAppBundleActivity">Define activity</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary" id="createNewBucket">Go ahead, create the bucket</button>
+          </div>
+        </div>
+      </div>
+      <!-- Modal AppBundle -->
+      <div class="modal fade" id="defineActivityModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Cancel"><span
+                  aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Define new AppBundle & Activity</h4>
+            </div>
+            <div class="modal-body">
+              <div class="alert alert-warning">Define AppBundle &amp; Activity only once.<br />Redefine only when your
+                plugin code change (creates a new version).</div>
+              <div class="form-group">
+                <label for="localBundles">Select a local AppBundle:</label>
+                <select class="form-control" id="localBundles"> </select>
+                <b>Tip:</b> Make sure .ZIP bundles are placed at <b>/bundles/</b> folder
+              </div>
+              <div class="form-group">
+                <label for="engines">Select engine:</label>
+                <select class="form-control" id="engines"> </select>
+              </div>
+              For this sample the .ZIP name is used as suffix to define <b>AppBundle</b> and <b>Activity</b>
+              names. Activities will have file and params input, and file output.
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-danger" id="clearAccount">Clear account</button>
+              <button type="button" class="btn btn-primary" id="createAppBundleActivity">Define activity</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 </body>
 
 </html>
