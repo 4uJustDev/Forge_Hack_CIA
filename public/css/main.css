@@ -24,9 +24,26 @@ html, body {
   
   .testExtension {
     /* background-image: url(/img/myAwesomeIcon.png); */
-    background-color: aqua;
+    background-image: url(https://github.com/encharm/Font-Awesome-SVG-PNG/raw/master/white/png/24/dashboard.png);
     background-size: 24px;
     background-repeat: no-repeat;
     background-position: center;
   }
-  
+.adsk-viewing-viewer #toolbar-modelStructureTool {
+	display: none !important;
+	}
+.adsk-viewing-viewer #toolbar-explodeTool {
+	display: none !important;
+	}
+.adsk-viewing-viewer #toolbar-measurementSubmenuTool {
+	display: none !important;
+	}
+.adsk-viewing-viewer #toolbar-bimWalkTool {
+	display: none !important;
+	}
+.adsk-viewing-viewer #toolbar-fullscreenTool {
+	display: none !important;
+	}
+.adsk-viewing-viewer #toolbar-cameraSubmenuTool {
+	display: none !important;
+	}
