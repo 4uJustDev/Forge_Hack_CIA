@@ -17,7 +17,7 @@ router.use(bodyParser.json());
 
 // Middleware for obtaining a token for each request.
 router.use(async (req, res, next) => {
-    req.oauth_client = await getClient(/*config.scopes.internal*/);
+    req.oauth_client = await getClient(config.scopes.internal);
     req.oauth_token = req.oauth_client.getCredentials();
     next();
 });
