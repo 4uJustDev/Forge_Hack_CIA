@@ -32,3 +32,23 @@ function getForgeToken(callback) {
     });
   });
 }
+
+const onExtensionLoaded = (e) => {
+
+  if (e.extensionId === 'Autodesk.BimWalk') {
+
+    const navTools = viewer.toolbar.getControl('navTools')
+
+    navTools.removeControl('toolbar-bimWalkTool')
+
+    viewer.removeEventListener(
+      Autodesk.Viewing.EXTENSION_LOADED_EVENT,
+      onExtensionLoaded)
+  }
+}
+
+viewer.addEventListener(
+  Autodesk.Viewing.EXTENSION_LOADED_EVENT,
+  onExtensionLoaded)
+
+viewer.start()
