@@ -37,6 +37,11 @@
             <img alt="Autodesk Forge" src="//developer.static.autodesk.com/images/logo_forge-2-line.png" height="20">
           </a>
         </li>
+				<li>
+					<button type="button" class="btn-config" data-toggle="modal" data-target=".bd-example-modal-ll">
+						Конфигурировать
+					</button>
+				</li>
       </ul>
     </div>
   </nav>
@@ -140,9 +145,6 @@
               </div>
             </div>
           </div>
-
-
-
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -151,6 +153,35 @@
       </div>
     </div>
   </div>
+
+		<!-- modal -->
+		<div class="modal fade bd-example-modal-ll" id="defineActivityModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+					<div class="modal-content">
+							<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Cancel"><span aria-hidden="true">&times;</span></button>
+									<h4 class="modal-title" id="myModalLabel">Define new AppBundle & Activity</h4>
+							</div>
+							<div class="modal-body">
+								<div class="alert alert-warning"><center>Define AppBundle &amp; Activity only once.<br />Redefine only when your plugin code change (creates a new version).</center></div>
+									<div class="form-group">
+											<label for="localBundles">Select a local AppBundle:</label>
+											<select class="form-control" id="localBundles"> </select>
+											<b>Tip:</b> Make sure .ZIP bundles are placed at <b>/bundles/</b> folder
+									</div>
+									<div class="form-group">
+											<label for="engines">Select engine:</label>
+											<select class="form-control" id="engines"> </select>
+									</div>
+									For this sample the .ZIP name is used as suffix to define <b>AppBundle</b> and <b>Activity</b>
+									names. Activities will have file and params input, and file output.
+							</div>
+							<div class="modal-footer">
+									<button class="btn btn-danger" id="clearAccount">Clear account</button>
+									<button type="button" class="btn btn-primary" id="createAppBundleActivity">Define activity</button>
+							</div>
+					</div>
+			</div> 
 
   <!-- Modal Create Bucket -->
   <div class="modal fade" id="createBucketModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
