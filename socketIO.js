@@ -1,5 +1,5 @@
 module.exports =(app) => {
-
+    // allowEIO3: true // false by default
 	const http = require('http').Server(app);
 	const io = require('socket.io')(http);
 	app.io = io;
