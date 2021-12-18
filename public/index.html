@@ -37,19 +37,19 @@
             <img alt="Autodesk Forge" src="//developer.static.autodesk.com/images/logo_forge-2-line.png" height="20">
           </a>
         </li>
-				<li>
-					<button type="button" class="btn-config" data-toggle="modal" data-target=".bd-example-modal-ll">
-						Конфигурировать
-					</button>
-				</li>
       </ul>
+      <div style="float: right; margin-top: 10px;">
+        <button id="btnDA" type="button" class="btn btn-primary btn-config" data-toggle="modal" data-target=".bd-example-modal-ll">
+          Параметры Design Automation
+        </button>
+      </div>
     </div>
   </nav>
   <!-- End of navbar -->
   <div class="container-fluid fill">
     <div class="row fill">
       <div class="col-sm-4 fill">
-        <div class="panel panel-default fill">
+        <div class="panel panel-default" style="margin-bottom: 5px">
           <div class="panel-heading" data-toggle="tooltip">
             Buckets &amp; Objects
             <span id="refreshBuckets" class="glyphicon glyphicon-refresh" style="cursor: pointer"></span>
@@ -62,33 +62,17 @@
             tree here
           </div>
         </div>
+        <!-- Button trigger modal -->
+        <div class="col text-center">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
+            Конфигуратор
+          </button>
+        </div>
 
       </div>
       <div class="col-sm-8 fill">
         <div id="forgeViewer"></div>
       </div>
-
-      <!-- <div class="col-sm-4 fill">
-        <div class="form-group">
-          <label for="width">Width:</label>
-          <input type="number" class="form-control" id="width" placeholder="Enter new width value">
-        </div>
-        <div class="form-group">
-          <label for="height">Height:</label>
-          <input type="number" class="form-control" id="height" placeholder="Enter new height value">
-        </div>
-
-        <div class="form-group">
-          <label for="inputFile">Input file</label>
-          <input type="file" class="form-control-file" id="inputFile">
-        </div>
-
-        <div class="form-group">
-          <label for="activity">Existing activities</label>
-          <select class="form-control" id="activity"> </select>
-        </div>
-        <button class="btn btn-primary" id="startWorkitem">Start workitem</button><br />
-      </div> -->
 
       <!-- <div class="col-sm-8 fill">
         <pre id="outputlog" style="height: calc(100vh - 120px);; overflow-y: scroll;"></pre>
@@ -98,13 +82,8 @@
   </div>
 
   <form id="uploadFile" method='post' enctype="multipart/form-data">
-    <input id="hiddenUploadField" type="file" name="theFile" style="visibility:hidden" />
+    <input id="hiddenUploadField" type="file" name="theFile" style="visibility: hidden" />
   </form>
-
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
-    Запустить модальное окно
-  </button>
 
   <!-- Modal -->
   <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog"
